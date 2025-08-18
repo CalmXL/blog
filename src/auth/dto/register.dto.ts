@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator'
-import { IsConfirm } from 'src/common/rules/is-confirm.rule'
-import { IsNotExistsRule } from 'src/common/rules/is-not-exists.rule'
+import { IsConfirm } from '@/common/rules/is-confirm.rule'
+import { IsNotExistsRule } from '@/common/rules/is-not-exists.rule'
 
 export default class RegisterDto {
   @IsNotEmpty({
