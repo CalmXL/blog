@@ -7,12 +7,9 @@ import {
 
 export default class Validate extends ValidationPipe {
   protected flattenValidationErrors(validationErrors: ValidationError[]): string[] {
-    super.flattenValidationErrors(validationErrors)
-    // return {}
-
     const messages = {}
     validationErrors.forEach((error) => {
-      messages[error.property] = Object.values(error.constraints)[0]
+      messages[error.property] = Object.values(error.constraints)
     })
 
     throw new HttpException(
