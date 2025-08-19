@@ -7,7 +7,12 @@ import { PrismaService } from '@/prisma/prisma.service'
 export class ArticleService {
   constructor(private prisma: PrismaService) {}
   create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article'
+    return this.prisma.article.create({
+      data: {
+        title: createArticleDto.title,
+        content: createArticleDto.content,
+      },
+    })
   }
 
   async findAll(page = 1, size = 10) {
@@ -28,7 +33,11 @@ export class ArticleService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} article`
+    return this.prisma.article.findFirst({
+      where: {
+        id,
+      },
+    })
   }
 
   update(id: number, updateArticleDto: UpdateArticleDto) {
@@ -36,6 +45,10 @@ export class ArticleService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} article`
+    return this.prisma.article.delete({
+      where: {
+        id,
+      },
+    })
   }
 }
