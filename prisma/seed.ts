@@ -39,6 +39,14 @@ async function run() {
   //     data: { categoryId: category.id }, // 使用 category.id
   //   })
   // }
+  await prisma.user.update({
+    where: {
+      name: 'xulei',
+    },
+    data: {
+      role: 'admin',
+    },
+  })
 }
 
 run()
