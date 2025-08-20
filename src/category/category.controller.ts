@@ -12,18 +12,21 @@ import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/create-category.dto'
 import { UpdateCategoryDto } from './dto/update-category.dto'
 import { AuthGuard } from '@nestjs/passport'
+import { Auth } from '@/auth/decorator/auth.decoration'
+import { Role } from '@/auth/enum'
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
+  @Auth(Role.EDITOR, Role.ADMIN)
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoryService.create(createCategoryDto)
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   findAll() {
     return this.categoryService.findAll()
   }

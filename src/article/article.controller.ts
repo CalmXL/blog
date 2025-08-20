@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { ArticleService } from './article.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
+import { Auth } from '@/auth/decorator/auth.decoration'
 
 @Controller('article')
 export class ArticleController {
@@ -13,6 +14,7 @@ export class ArticleController {
   }
 
   @Get()
+  @Auth()
   findAll(@Query('page') page, @Query('size') size) {
     console.log(page, size)
 
