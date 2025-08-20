@@ -9,8 +9,8 @@ export class ArticleService {
   create(createArticleDto: CreateArticleDto) {
     return this.prisma.article.create({
       data: {
-        title: createArticleDto.title,
-        content: createArticleDto.content,
+        ...createArticleDto,
+        categoryId: +createArticleDto.categoryId,
       },
     })
   }
@@ -45,7 +45,7 @@ export class ArticleService {
       where: {
         id,
       },
-      data: updateArticleDto,
+      data: { ...updateArticleDto, categoryId: +updateArticleDto.categoryId },
     })
   }
 

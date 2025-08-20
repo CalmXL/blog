@@ -5,4 +5,6 @@ export class CreateArticleDto {
   title: string
   @IsNotEmpty({ message: '文章不能为空' })
   content: string
+  @IsNotEmpty({ message: '请选择栏目' })
+  categoryId: number
 }
