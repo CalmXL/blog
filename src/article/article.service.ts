@@ -50,6 +50,8 @@ export class ArticleService {
   }
 
   remove(id: number) {
+    console.log(id)
+
     return this.prisma.article.delete({
       where: {
         id,
